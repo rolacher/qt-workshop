@@ -55,8 +55,9 @@ private:
     UsersModel* _pUsersModel;
     EventManager* _pEventManager;
     UdpSocket* _pUdpSocket;
-    Ui::MainWindow *ui;
     NickName* _nickName;
+    Ui::MainWindow *ui;
+
 };
 
 } // IM
