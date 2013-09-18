@@ -17,6 +17,7 @@ class UdpSocket;
 class UserManager;
 class UsersModel;
 class EventManager;
+class NickName;
 
 class MainWindow : public QMainWindow
 {
@@ -46,7 +47,8 @@ private:
     bool eventFilter(QObject *obj, QEvent *event);
 
 private:
-    QString _nickname;
+    static const QString _persistFilename;
+
     Controller* _pController;
     Communication* _pCommunication;
     UserManager* _pUserManager;
@@ -54,6 +56,7 @@ private:
     EventManager* _pEventManager;
     UdpSocket* _pUdpSocket;
     Ui::MainWindow *ui;
+    NickName* _nickName;
 };
 
 } // IM

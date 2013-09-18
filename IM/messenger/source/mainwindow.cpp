@@ -8,23 +8,29 @@
 #include "messenger/udp_socket.h"
 #include "messenger/usersmodel.h"
 #include "messenger/editdialog.h"
+#include "messenger/nickname.h"
 
 #include <QKeyEvent>
 
 namespace IM
 {
 
+const QString MainWindow::_persistFilename = "messenger.ini";
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    _nickname("MyName"),
     _pController(new Controller()),
     _pCommunication(NULL),
     _pUserManager(new UserManager()),
     _pUsersModel(new UsersModel(this, _pUserManager)),
     _pEventManager(new EventManager()),
     _pUdpSocket(NULL),
+    _nickName(NULL),
     ui(new Ui::MainWindow)
-{
+{ 
+    _nickName = new NickName(_persistFilename);
+
     ui->setupUi(this);
 
     _pUdpSocket = new UdpSocket();
@@ -78,19 +84,19 @@ void MainWindow::handleSendMessage()
 void MainWindow::editClicked()
 {
     EditDialog dlg(this);
-    dlg.setEditData(_nickname);
+    dlg.setEditData(_nickName->getNickname());
     if (dlg.exec()==QDialog::Accepted)
     {
-        _nickname = dlg.getEditData();
-        _pController->set_nickname(_nickname);
+        _nickName->setNickname(dlg.getEditData());
         updateNickName();
     }
 }
 
 void MainWindow::updateNickName()
 {
-    ui->lblNickName->setText(_nickname);
-    _pController->set_nickname(_nickname);
+    const QString name = _nickName->getNickname();
+    ui->lblNickName->setText(name);
+    _pController->set_nickname(name);
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
