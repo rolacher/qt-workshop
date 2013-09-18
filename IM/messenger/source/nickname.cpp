@@ -5,11 +5,14 @@
 namespace IM
 {
 
+static const QString DEFAULT="DEFINE NICKNAME";
+
 NickName::NickName(const QString& path, QObject* parent) :
     QObject(parent),
     _filename(path),
     _initialized(false)
 {
+    _nickname = DEFAULT;
 }
 
 const QString& NickName::getNickname()
@@ -40,9 +43,11 @@ void NickName::save()
 void NickName::load()
 {
     QFile load_file(_filename);
-    load_file.open(QIODevice::ReadOnly);
-    QDataStream in(&load_file);
-    in >> _nickname;
+    if (load_file.open(QIODevice::ReadOnly))
+    {
+        QDataStream in(&load_file);
+        in >> _nickname;
+    }
     load_file.close();
 }
 

@@ -8,7 +8,6 @@
 #include <QStringList>
 #include <QTimer>
 
-
 namespace IM
 {
 
@@ -20,10 +19,10 @@ public:
     const QString& getNickname();
     void setNickname(const QString& name);
 
+private:
     void save();
     void load();
 
-   private:
     QString _nickname;
     QString _filename;
 
