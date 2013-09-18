@@ -1,0 +1,8 @@
+*.gcda
+*.gcno
+*.o
+*.a
+Makefile
+moc_*
+
+*.swp
