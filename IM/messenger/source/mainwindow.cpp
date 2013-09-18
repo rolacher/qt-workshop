@@ -6,8 +6,10 @@
 #include "messenger/usermanager.h"
 #include "messenger/udp_socket.h"
 #include "messenger/usersmodel.h"
+#include "messenger/editdialog.h"
 
-namespace IM {
+namespace IM
+{
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -35,8 +37,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(_pCommunication, SIGNAL(received_message(QString,QString)),this,SLOT(handleIncommingMessage(QString,QString)));
 
+    connect(ui->pbEditNickname, SIGNAL(clicked()),SLOT(editClicked()));
 
-    _pController->set_nickname(_nickname);
+    updateNickName();
 
     UsersModel* model = new UsersModel(this);
     ui->treeView->setModel(model);
@@ -59,6 +62,24 @@ void MainWindow::handleSendMessage()
     QString message = ui->textMessageInput->text();
     emit send_message(message);
     ui->textMessageInput->clear();
+}
+
+void MainWindow::editClicked()
+{
+    EditDialog dlg(this);
+    dlg.setEditData(_nickname);
+    if (dlg.exec()==QDialog::Accepted)
+    {
+        _nickname = dlg.getEditData();
+        _pController->set_nickname(_nickname);
+        updateNickName();
+    }
+}
+
+void MainWindow::updateNickName()
+{
+    ui->lblNickName->setText(_nickname);
+    _pController->set_nickname(_nickname);
 }
 
 }

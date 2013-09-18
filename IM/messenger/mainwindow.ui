@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>594</width>
-    <height>451</height>
+    <height>537</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,14 +15,27 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="4" rowspan="2">
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="textMessageInput"/>
+    </item>
+    <item row="3" column="2">
+     <widget class="QPushButton" name="pbSend">
+      <property name="text">
+       <string>&amp;Send</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="3">
+     <widget class="QTextEdit" name="textChatHistory"/>
+    </item>
+    <item row="1" column="4" rowspan="2">
      <widget class="QTreeView" name="treeView">
       <attribute name="headerVisible">
        <bool>false</bool>
       </attribute>
      </widget>
     </item>
-    <item row="2" column="4">
+    <item row="3" column="4">
      <widget class="QPushButton" name="pbCreateEvent">
       <property name="focusPolicy">
        <enum>Qt::ClickFocus</enum>
@@ -32,18 +45,19 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QLineEdit" name="textMessageInput"/>
-    </item>
-    <item row="2" column="2">
-     <widget class="QPushButton" name="pbSend">
+    <item row="0" column="1">
+     <widget class="QPushButton" name="pbEditNickname">
       <property name="text">
-       <string>&amp;Send</string>
+       <string>Edit Nickname</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="0" colspan="3">
-     <widget class="QTextEdit" name="textChatHistory"/>
+    <item row="0" column="2" colspan="3">
+     <widget class="QLabel" name="lblNickName">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

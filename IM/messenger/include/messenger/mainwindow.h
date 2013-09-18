@@ -35,6 +35,10 @@ public slots:
 
 private slots:
     void handleSendMessage();
+    void editClicked();
+
+private:
+    void updateNickName();
 
 private:
     QString _nickname;
