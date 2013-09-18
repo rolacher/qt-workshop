@@ -12,3 +12,10 @@ qint64 QUdpSocketMock::readDatagram(QByteArray const & datagram, qint64 maxsize,
      emit called_readDatagram(datagram, maxsize, host, port);
      return datagram.size();
 }
+
+bool QUdpSocketMock::bind ( const QHostAddress & address, quint16 port)
+{
+    Q_UNUSED(address);
+    Q_UNUSED(port);
+    return true;
+}

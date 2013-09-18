@@ -27,7 +27,7 @@ public:
     void set_nickname(const QString & nickname);
 
 signals:
-    void send_message(const QString & nickname, QString const & message);
+    void send_message(QString const & message);
 
 public slots:
     void handleIncommingMessage(const QString& from_nickname, const QString& message);

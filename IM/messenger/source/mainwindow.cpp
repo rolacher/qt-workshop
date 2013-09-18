@@ -21,11 +21,17 @@ MainWindow::MainWindow(QWidget *parent) :
     _pCommunication = new Communication(*_pUdpSocket);
 
     connect(_pController, SIGNAL(send_message(QString,QString)), _pCommunication, SLOT(handle_send_message(QString,QString)));
-    connect(this, SIGNAL(send_message(const QString &, QString const &)), _pController, SLOT(handle_send_message(const QString &)));
+    connect(this, SIGNAL(send_message(QString const &)), _pController, SLOT(handle_send_message(const QString &)));
     connect(_pController, SIGNAL(send_keepalive(QString)), _pCommunication, SLOT(handle_send_keepalive(QString)));
 
     connect(ui->pbSend, SIGNAL(clicked()), SLOT(handleSendMessage()));
     connect(ui->textMessageInput, SIGNAL(returnPressed()), SLOT(handleSendMessage()));
+
+    connect(_pCommunication, SIGNAL(received_message(QString,QString)),this,SLOT(handleIncommingMessage(QString,QString)));
+
+
+    _pController->set_nickname(_nickname);
+
 }
 
 MainWindow::~MainWindow()
@@ -43,8 +49,7 @@ void MainWindow::handleIncommingMessage(const QString& from_nickname, const QStr
 void MainWindow::handleSendMessage()
 {
     QString message = ui->textMessageInput->text();
-    emit send_message(_nickname, message);
-    handleIncommingMessage(_nickname, message);
+    emit send_message(message);
     ui->textMessageInput->clear();
 }
 

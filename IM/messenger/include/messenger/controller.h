@@ -1,8 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include <QtCore/QObject>
-#include <QMap>
+#include <QObject>
 
 class QTimer;
 

@@ -6,13 +6,15 @@
 
 #include "messenger/iudp_socket.h"
 
-class QUdpSocketMock : public QObject, public IM::IUdpSocket
+class QUdpSocketMock :  public IM::IUdpSocket
 {
     Q_OBJECT
 
 public:
     qint64 writeDatagram(QByteArray const & datagram, QHostAddress const & host, quint16 port);
     qint64 readDatagram(QByteArray const & datagram, qint64 maxsize, QHostAddress const & host, quint16 port);
+
+    bool bind ( const QHostAddress & address, quint16 port);
 
 signals:
     void called_writeDatagram(QByteArray const & datagram, QHostAddress const & host, quint16 port);
