@@ -1,7 +1,10 @@
-TARGET = messenger
-TEMPLATE = app
+QT       += core gui
 
-QT -= gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TARGET = messenger
+
+TEMPLATE = app
 
 SOURCES +=  \
     main.cpp

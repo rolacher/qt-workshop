@@ -1,6 +1,8 @@
 TEMPLATE = lib
 
-QT -= gui
+QT += core gui
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += staticlib
 
@@ -10,24 +12,25 @@ SOURCES += \
     source/application.cpp \
     source/controller.cpp \
     source/communication.cpp \
-    source/udp_socket.cpp
+    source/udp_socket.cpp \
+    source/mainwindow.cpp
 
 HEADERS += \
     include/messenger/application.h \
     include/messenger/controller.h \
     include/messenger/communication.h \
     include/messenger/iudp_socket.h \
-    include/messenger/udp_socket.h
+    include/messenger/udp_socket.h \
+    include/messenger/mainwindow.h
 
-OTHER_FILES += \
-    qml/main.qml \
-    qml/Button.qml \
-    qml/SendMessage.qml
+OTHER_FILES +=
 
-RESOURCES += \
-    messenger.qrc
+RESOURCES +=
 
 QMAKE_CXXFLAGS_DEBUG += -fprofile-arcs -ftest-coverage
 
 include(../common.pri)
+
+FORMS += \
+    mainwindow.ui
 

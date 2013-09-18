@@ -3,8 +3,7 @@ TEMPLATE = subdirs
 SUBDIRS = \
     main \
     messenger \
-    unit-tests \
-    qml-tests
+    unit-tests
 
 main.depends = messenger
 
