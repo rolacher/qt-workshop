@@ -21,7 +21,10 @@ public:
 
 public slots:
     void handle_send_message(QString const & nickname, QString const & message);
+    void handle_receive_message(QByteArray & data);
 
+signals:
+    void received_message(QString const & nickname, QString const & message);
 
 private:
     IUdpSocket & _udp_socket;
