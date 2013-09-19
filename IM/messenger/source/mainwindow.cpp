@@ -41,6 +41,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     updateNickName();
 
+    ui->textMessageInput->setFocus();
+
     UsersModel* model = new UsersModel(this);
     ui->treeView->setModel(model);
 }
