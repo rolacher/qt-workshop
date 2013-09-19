@@ -3,6 +3,7 @@
 
 #include "messenger/communication.h"
 #include "messenger/controller.h"
+#include "messenger/usermanager.h"
 #include "messenger/udp_socket.h"
 
 namespace IM {
@@ -12,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _nickname("MyName"),
     _pController(new Controller()),
     _pCommunication(NULL),
+    _pUserManager(new UserManager()),
     _pUdpSocket(NULL),
     ui(new Ui::MainWindow)
 {
@@ -23,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_pController, SIGNAL(send_message(QString,QString)), _pCommunication, SLOT(handle_send_message(QString,QString)));
     connect(this, SIGNAL(send_message(const QString &, QString const &)), _pController, SLOT(handle_send_message(const QString &)));
     connect(_pController, SIGNAL(send_keepalive(QString)), _pCommunication, SLOT(handle_send_keepalive(QString)));
+
+    connect(_pCommunication, SIGNAL(received_message(QString,QString)), _pUserManager, SLOT(received_message(QString const &)));
 
     connect(ui->pbSend, SIGNAL(clicked()), SLOT(handleSendMessage()));
     connect(ui->textMessageInput, SIGNAL(returnPressed()), SLOT(handleSendMessage()));

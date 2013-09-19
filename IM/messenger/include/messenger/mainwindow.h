@@ -14,6 +14,7 @@ namespace IM
 class Controller;
 class Communication;
 class UdpSocket;
+class UserManager;
 
 
 class MainWindow : public QMainWindow
@@ -39,6 +40,7 @@ private:
     QString _nickname;
     Controller* _pController;
     Communication* _pCommunication;
+    UserManager* _pUserManager;
     UdpSocket* _pUdpSocket;
     Ui::MainWindow *ui;
 };

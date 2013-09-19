@@ -14,7 +14,7 @@ UserManagerTest::UserManagerTest(QObject *parent) :
 
 void UserManagerTest::checkEmptyUserListOnCreation(){
 
-    UserManager testee;
+    IM::UserManager testee;
     QVERIFY(testee.getActiveUsers().isEmpty());
 
 }
@@ -22,7 +22,7 @@ void UserManagerTest::checkEmptyUserListOnCreation(){
 void UserManagerTest::checkAddUserUpdatesCheckUserList(){
 
     const QString expectedUser("Bart Simpson");
-    UserManager testee;
+    IM::UserManager testee;
 
     testee.addUser(expectedUser);
     QVERIFY(!testee.getActiveUsers().isEmpty());
@@ -31,7 +31,7 @@ void UserManagerTest::checkAddUserUpdatesCheckUserList(){
 
 void UserManagerTest::checkRemoveUserUpdatesCheckUserList(){
     const QString expectedUser("Marge Simpson");
-    UserManager testee;
+    IM::UserManager testee;
 
     testee.addUser(expectedUser);
     testee.removeUser(expectedUser);
@@ -42,7 +42,7 @@ void UserManagerTest::checkRemoveUserUpdatesCheckUserList(){
 void UserManagerTest::checkAddUserSendsUserListUpdatedSignal(){
 
     const QString expectedUser("Bart Simpson");
-    UserManager testee;
+    IM::UserManager testee;
     QSignalSpy signal_spy(&testee, SIGNAL(UserListChanged()));
 
     testee.addUser(expectedUser);
@@ -53,7 +53,7 @@ void UserManagerTest::checkAddUserSendsUserListUpdatedSignal(){
 void UserManagerTest::checkRemoveUserSendsUserListUpdatedSignal(){
 
     const QString expectedUser("Bart Simpson");
-    UserManager testee;
+    IM::UserManager testee;
 
     testee.addUser(expectedUser);
 
@@ -61,4 +61,17 @@ void UserManagerTest::checkRemoveUserSendsUserListUpdatedSignal(){
     QSignalSpy signal_spy(&testee, SIGNAL(UserListChanged()));
     testee.removeUser(expectedUser);
     QVERIFY(1 == signal_spy.count());
+}
+
+
+void UserManagerTest::checkUserListUpdateRemovesUser() {
+    const QString expectedUser("Bart Simpson");
+    IM::UserManager testee;
+
+    testee.addUser(expectedUser);
+    QTest::qSleep (1200);
+
+    testee.checkIfUserLost(1);   // "simulate" time trigger
+    QVERIFY(testee.getActiveUsers().isEmpty());
+    QVERIFY(-1 == testee.getActiveUsers().indexOf(expectedUser));
 }

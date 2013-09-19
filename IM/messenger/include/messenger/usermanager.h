@@ -6,6 +6,11 @@
 #include <QString>
 #include <QDateTime>
 #include <QStringList>
+#include <QTimer>
+
+
+namespace IM {
+
 
 class IUserManager
 {
@@ -30,6 +35,10 @@ public:
     void addUser(QString user);
     void removeUser(QString user);
 
+public slots:
+    void checkIfUserLost(const quint16 timeout = 7);
+    void received_message(QString const & nickname);
+
 
 signals:
    void UserListChanged(void);
@@ -37,8 +46,16 @@ signals:
 
 private:
 
-    QMap<QString,QDateTime> _usermap;
+   QStringList getStaleUsers(const quint16 timeout);
+
+   QMap<QString,QDateTime> _usermap;
+
+   QTimer* _pTimer;
+
+   static const quint16 TIMEOUT = 7;
 
 };
+
+} // namespace IM
 
 #endif // USERMANAGER_H

@@ -18,6 +18,7 @@ private slots:
     void checkRemoveUserUpdatesCheckUserList();
     void checkAddUserSendsUserListUpdatedSignal();
     void checkRemoveUserSendsUserListUpdatedSignal();
+    void checkUserListUpdateRemovesUser();
 
 };
 
