@@ -23,6 +23,9 @@ public:
 signals:
     void send_message(const QString & nickname, QString const & message);
 
+public slots:
+    void handleIncommingMessage(const QString& from_nickname, const QString& message);
+
 private slots:
     void handleSendMessage();
 
