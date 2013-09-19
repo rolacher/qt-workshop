@@ -6,54 +6,53 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>416</width>
-    <height>266</height>
+    <width>594</width>
+    <height>451</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="textMessageInput">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>180</y>
-      <width>281</width>
-      <height>27</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pbSend">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>180</y>
-      <width>99</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&amp;Send</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textChatHistory">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>391</width>
-      <height>161</height>
-     </rect>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="4" rowspan="2">
+     <widget class="QTreeView" name="treeView">
+      <attribute name="headerVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
+    </item>
+    <item row="2" column="4">
+     <widget class="QPushButton" name="pbCreateEvent">
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="text">
+       <string>Create Event...</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="textMessageInput"/>
+    </item>
+    <item row="2" column="2">
+     <widget class="QPushButton" name="pbSend">
+      <property name="text">
+       <string>&amp;Send</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <widget class="QTextEdit" name="textChatHistory"/>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>416</width>
+     <width>594</width>
      <height>25</height>
     </rect>
    </property>
