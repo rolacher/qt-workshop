@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_pController, SIGNAL(send_keepalive(QString)), _pCommunication, SLOT(handle_send_keepalive(QString)));
 
     connect(_pCommunication, SIGNAL(received_message(QString,QString)), _pUserManager, SLOT(received_message(QString const &)));
+    connect(_pCommunication, SIGNAL(received_keepalive(QString)), _pUserManager, SLOT(received_message(QString)));
 
     connect(ui->pbSend, SIGNAL(clicked()), SLOT(handleSendMessage()));
     connect(ui->textMessageInput, SIGNAL(returnPressed()), SLOT(handleSendMessage()));

@@ -26,6 +26,7 @@ public slots:
 
 signals:
     void received_message(QString const & nickname, QString const & message);
+    void received_keepalive(QString const & nickname);
 
 private:
     IUdpSocket & _udp_socket;

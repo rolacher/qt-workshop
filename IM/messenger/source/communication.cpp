@@ -45,6 +45,11 @@ void Communication::handle_receive_message(QByteArray &data)
      case IM::Command::Message:
         emit received_message(nickname, message);
         break;
+
+    case IM::Command::KeepAlive:
+        emit received_keepalive(nickname);
+        break;
+
     default:
         qDebug() << "unknown message received";
         break;
