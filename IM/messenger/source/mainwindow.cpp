@@ -8,6 +8,8 @@
 #include "messenger/usersmodel.h"
 #include "messenger/editdialog.h"
 
+#include <QKeyEvent>
+
 namespace IM
 {
 
@@ -34,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->pbSend, SIGNAL(clicked()), SLOT(handleSendMessage()));
     connect(ui->textMessageInput, SIGNAL(returnPressed()), SLOT(handleSendMessage()));
+    ui->textMessageInput->installEventFilter(this);
 
     connect(_pCommunication, SIGNAL(received_message(QString,QString)),this,SLOT(handleIncommingMessage(QString,QString)));
 
@@ -82,6 +85,19 @@ void MainWindow::updateNickName()
 {
     ui->lblNickName->setText(_nickname);
     _pController->set_nickname(_nickname);
+}
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        if (keyEvent->key() == Qt::Key_D && keyEvent->modifiers() == Qt::ControlModifier)
+        {
+            emit request_quit();
+            return true;
+        }
+    }
+    return QObject::eventFilter(obj, event);
 }
 
 }

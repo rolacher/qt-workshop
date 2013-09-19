@@ -29,6 +29,7 @@ public:
 
 signals:
     void send_message(QString const & message);
+    void request_quit();
 
 public slots:
     void handleIncommingMessage(const QString& from_nickname, const QString& message);
@@ -39,6 +40,9 @@ private slots:
 
 private:
     void updateNickName();
+
+private:
+    bool eventFilter(QObject *obj, QEvent *event);
 
 private:
     QString _nickname;
