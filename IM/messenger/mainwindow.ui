@@ -16,7 +16,11 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="4" rowspan="2">
-     <widget class="QTreeView" name="treeView"/>
+     <widget class="QTreeView" name="treeView">
+      <attribute name="headerVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
     </item>
     <item row="2" column="4">
      <widget class="QPushButton" name="pbCreateEvent">
