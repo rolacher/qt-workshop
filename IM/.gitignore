@@ -7,3 +7,7 @@ Makefile
 moc_*
 
 *.swp
+
+main/messenger
+messenger/ui_mainwindow.h
+unit-tests/unit-tests
