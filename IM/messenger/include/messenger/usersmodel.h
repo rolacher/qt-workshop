@@ -2,23 +2,27 @@
 #define USERSMODEL_H
 
 #include <QAbstractItemModel>
+#include <QStringList>
 #include "messenger/useritem.h"
 
+namespace IM {
+
+class UserManager;
 
 class UsersModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
-    explicit UsersModel(QObject *parent = 0);
+    explicit UsersModel(QObject *parent = 0, UserManager* user_manager=0);
     
 signals:
     
 public slots:
-    void addUser(const QString& nick);
-    void removeUser(const QString & nick);
+    void handle_user_list_changed();
 
 private:
-    QList<UserItem*> _registeredUsers;
+    UserManager* _pUserManager;
+    QStringList active_users;
 
 public:
 
@@ -37,5 +41,7 @@ public:
     // return columns. (here only 1)
     virtual int columnCount(const QModelIndex& index) const;
 };
+
+}
 
 #endif // USERSMODEL_H

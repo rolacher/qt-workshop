@@ -1,45 +1,42 @@
 #include "messenger/usersmodel.h"
+#include "messenger/usermanager.h"
 
-UsersModel::UsersModel(QObject *parent) :
-    QAbstractItemModel(parent)
+namespace IM {
+
+UsersModel::UsersModel(QObject *parent, UserManager* user_manager) :
+    QAbstractItemModel(parent),
+    _pUserManager(user_manager)
 {
 }
 
-void UsersModel::addUser(const QString& nick)
+void UsersModel::handle_user_list_changed()
 {
-    foreach (UserItem* user, _registeredUsers)
+    if (_pUserManager!=NULL)
     {
-       if (user->_nickname==nick) return;
-    }
+        beginRemoveColumns(QModelIndex(), 0, active_users.size());
+        active_users.clear();
+        endRemoveRows();
 
-    UserItem* item = new UserItem(nick);
-    _registeredUsers.append(item);
-}
+        QStringList newUsers = _pUserManager->getActiveUsers();
+        beginInsertRows(QModelIndex(), 0, newUsers.size()-1);
+        active_users.append(newUsers);
+        endInsertRows();
 
-void UsersModel::removeUser(const QString & nick)
-{
-    for (QList<UserItem*>::Iterator iter = _registeredUsers.begin();
-         iter != _registeredUsers.end();
-         ++iter)
-    {
-        if ((*iter)->_nickname==nick) {
-            _registeredUsers.erase(iter);
-        }
+        emit dataChanged(createIndex(0, 0), createIndex(active_users.size()-1, 0));
     }
 }
 
 
 QVariant UsersModel::data(const QModelIndex& index, int role) const
 {
-    if (index.row() >= _registeredUsers.size()) return QVariant();
-    UserItem* item = _registeredUsers.at(index.row());
-    if (!item) return QVariant();
+    if (index.row() >= active_users.size()) return QVariant();
+    QString item = active_users.at(index.row());
 
     switch(role)
     {
         // qt specific roles
         case  Qt::DisplayRole:
-            return item->_nickname;
+            return item;
         break;
 
         //case Qt::DecorationRole:
@@ -68,7 +65,7 @@ int UsersModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid())
     {
-        return _registeredUsers.size();
+        return active_users.size();
     }
     return 0;
 }
@@ -79,4 +76,5 @@ int UsersModel::columnCount(const QModelIndex& index) const
     return 1;
 }
 
+}
 

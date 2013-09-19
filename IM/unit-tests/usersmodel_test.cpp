@@ -7,7 +7,7 @@
 
 void UserModelTest::handle_empty_list_consistency()
 {
-    UsersModel modelUnderTest;
+    IM::UsersModel modelUnderTest;
 
     QModelIndex index_at_0_0 = modelUnderTest.index(0, 0);
     QVariant data_at_0_0 = modelUnderTest.data(index_at_0_0);

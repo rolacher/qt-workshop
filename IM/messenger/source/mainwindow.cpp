@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _pController(new Controller()),
     _pCommunication(NULL),
     _pUserManager(new UserManager()),
+    _pUsersModel(new UsersModel(this, _pUserManager)),
     _pEventManager(new EventManager()),
     _pUdpSocket(NULL),
     ui(new Ui::MainWindow)
@@ -46,12 +47,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->pbEditNickname, SIGNAL(clicked()),SLOT(editClicked()));
 
+    connect(_pUserManager, SIGNAL(UserListChanged()), _pUsersModel, SLOT(handle_user_list_changed()));
+
     updateNickName();
 
     ui->textMessageInput->setFocus();
 
-    UsersModel* model = new UsersModel(this);
-    ui->treeView->setModel(model);
+    ui->treeView->setModel(_pUsersModel);
 }
 
 MainWindow::~MainWindow()
