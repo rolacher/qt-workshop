@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _pUdpSocket = new UdpSocket();
     _pCommunication = new Communication(*_pUdpSocket);
 
+    connect(_pController, SIGNAL(send_message(QString,QString)), _pCommunication, SLOT(handle_send_message(QString,QString)));
     connect(this, SIGNAL(send_message(const QString &, QString const &)), _pController, SLOT(handle_send_message(const QString &)));
     connect(_pController, SIGNAL(send_keepalive(QString)), _pCommunication, SLOT(handle_send_keepalive(QString)));
 
