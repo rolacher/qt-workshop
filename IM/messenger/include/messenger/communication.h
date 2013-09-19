@@ -21,6 +21,7 @@ public:
 
 public slots:
     void handle_send_message(QString const & nickname, QString const & message);
+    void handle_send_keepalive(QString const & nickname);
     void handle_receive_message(QByteArray & data);
 
 signals:

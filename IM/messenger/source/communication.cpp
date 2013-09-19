@@ -50,5 +50,18 @@ void Communication::handle_receive_message(QByteArray &data)
 
 }
 
+
+void Communication::handle_send_keepalive(QString const & nickname)
+{
+    QByteArray data;
+    QDataStream stream(&data, QIODevice::WriteOnly);
+    stream.setVersion(QDataStream::Qt_5_0);
+
+    stream << Command::KeepAlive;
+    stream << nickname;
+
+    _udp_socket.writeDatagram(data, QHostAddress::Broadcast, _port);
+}
+
 } // IM
 

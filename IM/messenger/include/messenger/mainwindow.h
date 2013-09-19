@@ -3,12 +3,18 @@
 
 #include <QMainWindow>
 
+
+
 namespace Ui {
 class MainWindow;
 }
 
 namespace IM
 {
+class Controller;
+class Communication;
+class UdpSocket;
+
 
 class MainWindow : public QMainWindow
 {
@@ -31,9 +37,9 @@ private slots:
 
 private:
     QString _nickname;
-
-
-private:
+    Controller* _pController;
+    Communication* _pCommunication;
+    UdpSocket* _pUdpSocket;
     Ui::MainWindow *ui;
 };
 
