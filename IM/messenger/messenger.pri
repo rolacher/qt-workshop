@@ -21,3 +21,7 @@ unix {
     QMAKE_LFLAGS_DEBUG += -fprofile-arcs
 }
 
+HEADERS +=
+
+SOURCES +=
+

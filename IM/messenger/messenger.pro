@@ -13,7 +13,8 @@ SOURCES += \
     source/controller.cpp \
     source/communication.cpp \
     source/udp_socket.cpp \
-    source/mainwindow.cpp
+    source/mainwindow.cpp \
+    source/usermanager.cpp
 
 HEADERS += \
     include/messenger/application.h \
@@ -21,7 +22,8 @@ HEADERS += \
     include/messenger/communication.h \
     include/messenger/iudp_socket.h \
     include/messenger/udp_socket.h \
-    include/messenger/mainwindow.h
+    include/messenger/mainwindow.h \
+    include/messenger/usermanager.h
 
 OTHER_FILES +=
 

@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 
 #include <QtCore/QObject>
+#include <QMap>
 
 class QTimer;
 
@@ -26,8 +27,10 @@ private slots:
     void handle_timeout();
 
 private:
+
     QString _nickname;
     QTimer* _pTimer;
+
     static const quint16 TIMEOUT = 5000;
 
 };
