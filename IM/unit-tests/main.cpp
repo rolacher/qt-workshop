@@ -5,6 +5,7 @@
 #include "communication_test.h"
 #include "usermanager_test.h"
 #include "usersmodel_test.h"
+#include "eventmanager_test.h"
 
 template<typename Test>
 void execute_test(int & exit_code, int argc, char * argv[])
@@ -25,6 +26,7 @@ int main(int argc, char * argv[])
     execute_test<CommunicationTest>(exit_code, argc, argv);
     execute_test<UserManagerTest>(exit_code, argc, argv);
     execute_test<UserModelTest>(exit_code, argc, argv);
+    execute_test<EventManagerTest>(exit_code, argc, argv);
 
     return exit_code;
 }

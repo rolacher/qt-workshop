@@ -4,6 +4,7 @@
 #include "messenger/communication.h"
 #include "messenger/controller.h"
 #include "messenger/usermanager.h"
+#include "messenger/eventmanager.h"
 #include "messenger/udp_socket.h"
 #include "messenger/usersmodel.h"
 #include "messenger/editdialog.h"
@@ -19,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _pController(new Controller()),
     _pCommunication(NULL),
     _pUserManager(new UserManager()),
+    _pEventManager(new EventManager()),
     _pUdpSocket(NULL),
     ui(new Ui::MainWindow)
 {
@@ -33,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(_pCommunication, SIGNAL(received_message(QString,QString)), _pUserManager, SLOT(received_message(QString const &)));
     connect(_pCommunication, SIGNAL(received_keepalive(QString)), _pUserManager, SLOT(received_message(QString)));
+
+    connect(_pCommunication, SIGNAL(received_event(QString)), _pEventManager, SLOT(received_event(QString)));
 
     connect(ui->pbSend, SIGNAL(clicked()), SLOT(handleSendMessage()));
     connect(ui->textMessageInput, SIGNAL(returnPressed()), SLOT(handleSendMessage()));

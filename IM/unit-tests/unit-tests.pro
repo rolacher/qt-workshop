@@ -12,14 +12,16 @@ SOURCES += \
     communication_test.cpp \
     mocks/qudpsocket_mock.cpp \
     usermanager_test.cpp \
-    usersmodel_test.cpp
+    usersmodel_test.cpp \
+    eventmanager_test.cpp
 
 HEADERS += \
     controller_test.h \
     communication_test.h \
     mocks/qudpsocket_mock.h \
     usermanager_test.h \
-    usersmodel_test.h
+    usersmodel_test.h \
+    eventmanager_test.h
 
 unix: QMAKE_CXXFLAGS_DEBUG += -fprofile-arcs -ftest-coverage
 

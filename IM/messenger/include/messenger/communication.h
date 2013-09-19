@@ -11,6 +11,9 @@ class Command {
 public:
     static quint32 const KeepAlive;
     static quint32 const Message;
+    static quint32 const HostEvent;
+    static quint32 const CallOutEvent;
+
 };
 
 class Communication : public QObject
@@ -27,7 +30,7 @@ public slots:
 signals:
     void received_message(QString const & nickname, QString const & message);
     void received_keepalive(QString const & nickname);
-
+    void received_event(QString const & event);
 private:
     IUdpSocket & _udp_socket;
     quint16 _port;

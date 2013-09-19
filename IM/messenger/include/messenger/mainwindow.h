@@ -15,7 +15,7 @@ class Controller;
 class Communication;
 class UdpSocket;
 class UserManager;
-
+class EventManager;
 
 class MainWindow : public QMainWindow
 {
@@ -49,6 +49,7 @@ private:
     Controller* _pController;
     Communication* _pCommunication;
     UserManager* _pUserManager;
+    EventManager* _pEventManager;
     UdpSocket* _pUdpSocket;
     Ui::MainWindow *ui;
 };

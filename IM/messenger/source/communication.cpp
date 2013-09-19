@@ -7,8 +7,10 @@
 
 namespace IM {
 
-quint32 const Command::KeepAlive = 0;
-quint32 const Command::Message = 1;
+quint32 const Command::KeepAlive    = 0;
+quint32 const Command::Message      = 1;
+quint32 const Command::HostEvent    = 2;
+quint32 const Command::CallOutEvent = 4;
 
 Communication::Communication(IUdpSocket & udp_socket) :
     _udp_socket(udp_socket),
@@ -48,6 +50,12 @@ void Communication::handle_receive_message(QByteArray &data)
 
     case IM::Command::KeepAlive:
         emit received_keepalive(nickname);
+        break;
+
+    case IM::Command::CallOutEvent:
+    case IM::Command::HostEvent:
+        // take message as "Event" (as both messages are the same format)
+        emit received_event(message);
         break;
 
     default:
