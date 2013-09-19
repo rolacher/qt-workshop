@@ -17,7 +17,8 @@ SOURCES += \
     source/usermanager.cpp \
     source/usersmodel.cpp \
     source/useritem.cpp \
-    source/editdialog.cpp
+    source/editdialog.cpp \
+    source/eventmanager.cpp
     source/eventmanager.cpp
 
 HEADERS += \
@@ -30,7 +31,8 @@ HEADERS += \
     include/messenger/usermanager.h \
     include/messenger/usersmodel.h \
     include/messenger/useritem.h \
-    include/messenger/editdialog.h
+    include/messenger/editdialog.h \
+    include/messenger/eventmanager.h
     include/messenger/eventmanager.h
 
 OTHER_FILES +=
