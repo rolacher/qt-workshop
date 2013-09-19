@@ -14,6 +14,7 @@ public:
     ~IUdpSocket() {}
 
     virtual qint64 writeDatagram(QByteArray const & datagram, QHostAddress const & host, quint16 port) = 0;
+    //virtual qint64 readDatagram(QByteArray const & datagram, qint64 maxsize, QHostAddress const & host, quint16 port) = 0;
 };
 
 } // IM

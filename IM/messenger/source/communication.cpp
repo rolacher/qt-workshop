@@ -1,5 +1,6 @@
 #include <QtCore/QDataStream>
 #include <QtNetwork/QHostAddress>
+#include <QDebug>
 
 #include "messenger/iudp_socket.h"
 #include "messenger/communication.h"
@@ -26,6 +27,27 @@ void Communication::handle_send_message(const QString & nickname, const QString 
     stream << message;
 
     _udp_socket.writeDatagram(data, QHostAddress::Broadcast, _port);
+}
+
+void Communication::handle_receive_message(QByteArray &data)
+{
+    QDataStream stream(&data, QIODevice::ReadOnly);
+    stream.setVersion(QDataStream::Qt_5_0);
+
+    quint32 command;
+    QString nickname;
+    QString message;
+    stream >> command >> nickname >> message;
+
+    switch (command) {
+     case IM::Command::Message:
+        emit received_message(nickname, message);
+        break;
+    default:
+        qDebug() << "unknown message received";
+        break;
+    }
+
 }
 
 } // IM
