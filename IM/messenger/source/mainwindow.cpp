@@ -4,6 +4,7 @@
 #include "messenger/communication.h"
 #include "messenger/controller.h"
 #include "messenger/udp_socket.h"
+#include "messenger/usersmodel.h"
 
 namespace IM {
 
@@ -32,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     _pController->set_nickname(_nickname);
 
+    UsersModel* model = new UsersModel(this);
+    ui->treeView->setModel(model);
 }
 
 MainWindow::~MainWindow()
