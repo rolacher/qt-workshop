@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/emoticons">
+        <file>resources/nicubunu_Emoticons_Simple_face.png</file>
+    </qresource>
+</RCC>

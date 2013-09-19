@@ -39,7 +39,8 @@ HEADERS += \
 
 OTHER_FILES +=
 
-RESOURCES +=
+RESOURCES += \
+    emoticons.qrc
 
 QMAKE_CXXFLAGS_DEBUG += -fprofile-arcs -ftest-coverage
 

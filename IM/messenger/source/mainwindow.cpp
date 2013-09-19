@@ -71,7 +71,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::handleIncommingMessage(const QString& from_nickname, const QString& message)
 {
-    ui->textChatHistory->append(QString("%1: %2").arg(from_nickname, message));
+    QString final_message = message;
+    final_message.replace(":-)", "<img src=\":/emoticons/resources/nicubunu_Emoticons_Simple_face.png\" />");
+    ui->textChatHistory->append(QString("%1: %2").arg(from_nickname, final_message));
 }
 
 void MainWindow::handleSendMessage()
