@@ -9,6 +9,7 @@ class ControllerTest : public QObject
 
 private slots:
     void invoke_send_message_signals_send_the_message();
+    //void wait_longer_than_timeout_sec_and_test_if_keep_alive_is_sent();
 };
 
 #endif // CONTROLLER_TEST_H
