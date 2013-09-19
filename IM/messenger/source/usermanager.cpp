@@ -19,9 +19,22 @@ QStringList UserManager::getActiveUsers(){
 }
 
 void UserManager::addUser(QString user){
+    bool userListChanged = !_usermap.contains(user);
+
     _usermap.insert(user,QDateTime::currentDateTime());
+
+    if (userListChanged) {
+        emit UserListChanged();
+    }
 }
 
 void UserManager::removeUser(QString user){
+
+    bool userListChanged = _usermap.contains(user);
+
     _usermap.remove(user);
+
+    if (userListChanged) {
+        emit UserListChanged();
+    }
 }

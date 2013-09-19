@@ -1,6 +1,7 @@
 #ifndef USERMANAGER_H
 #define USERMANAGER_H
 
+#include <QObject>
 #include <QMap>
 #include <QString>
 #include <QDateTime>
@@ -15,8 +16,10 @@ public:
     virtual void removeUser(QString user) = 0;
 };
 
-class UserManager : public  IUserManager
+class UserManager : public QObject, public  IUserManager
 {
+    Q_OBJECT
+
 public:
 
     UserManager();
@@ -27,9 +30,15 @@ public:
     void addUser(QString user);
     void removeUser(QString user);
 
+
+signals:
+   void UserListChanged(void);
+
+
 private:
 
     QMap<QString,QDateTime> _usermap;
+
 };
 
 #endif // USERMANAGER_H
